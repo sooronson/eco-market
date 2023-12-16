@@ -7,7 +7,7 @@ class Category(models.Model):
     title = models.CharField(max_length=200)
     parent = models.ForeignKey(
         "self", blank=True, null=True,
-        related_name="child", on_delete=models.SET_NULL
+        related_name="child", on_delete=models.PROTECT
     )
     slug = models.SlugField(unique=True)
 
