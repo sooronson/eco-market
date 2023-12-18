@@ -7,7 +7,7 @@ class Category(models.Model):
     title = models.CharField(max_length=200)
     parent = models.ForeignKey(
         "self", blank=True, null=True,
-        related_name="child", on_delete=models.PROTECT
+        related_name="child", on_delete=models.CASCADE
     )
     slug = models.SlugField(unique=True)
 
@@ -19,7 +19,7 @@ class Product(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     slug = models.SlugField(unique=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
     price = models.PositiveIntegerField()
 
     def __str__(self):
